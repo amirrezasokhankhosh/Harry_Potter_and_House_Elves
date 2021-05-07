@@ -109,7 +109,5 @@ def find_single_elf(groups):
 
 if __name__ == '__main__':
     elves = get_elves()
-    for elf in elves:
-        print(elf)
     honest_elf = find_an_honest(elves)
     print("Honest Elf : " + str(honest_elf))
