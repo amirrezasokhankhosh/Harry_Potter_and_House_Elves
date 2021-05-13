@@ -49,7 +49,7 @@ def find_an_honest(elves):
     for group in groups:
         if len(group.elves) > 1:
             evaluate(group)
-    groups = delete_honest_liar(groups)
+    groups = elimination(groups)
     count_elves = count_elves_func(groups)
     if count_elves % 2 == 0:
         new_elves = get_half_of_elves(groups)
@@ -57,11 +57,9 @@ def find_an_honest(elves):
     single_elf = find_single_elf(groups)
     groups.remove(single_elf)
     count_groups = len(groups)
+    new_elves = get_half_of_elves(groups)
     if count_groups % 2 == 0:
-        new_elves = get_half_of_elves(groups)
         new_elves.append(single_elf)
-    else:
-        new_elves = get_half_of_elves(groups)
     return find_an_honest(new_elves)
 
 
@@ -72,7 +70,7 @@ def get_half_of_elves(groups):
     return elves
 
 
-def delete_honest_liar(groups):
+def elimination(groups):
     must_delete = []
     for group in groups:
         if False in group.responses:
